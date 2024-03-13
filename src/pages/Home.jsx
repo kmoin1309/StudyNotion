@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
 import HighlightText from "../components/core/HomePage/HighlightText";
 import CTAButton from "../components/core/HomePage/Button";
+import Banner from "../assets/Images/banner.mp4";
+import CodeBlocks from "../components/core/HomePage/CodeBlocks";
 
 function Home() {
   return (
@@ -44,6 +46,47 @@ function Home() {
           >
             Book a Demo
           </CTAButton>
+        </div>
+
+        <div className="shadow-blue-200 mx-3 my-12">
+          <video
+            muted
+            loop
+            autoPlay
+          >
+            <source
+              src={Banner}
+              type="video/mp4"
+            />
+          </video>
+        </div>
+
+        {/* Code Section 1 */}
+        <div>
+          <CodeBlocks
+            position={"lg:flex-row"}
+            heading={
+              <div className="text-4xl font-semibold">
+                Unlock Your <HighlightText text={"coding potential"} />
+                with our online Courses
+              </div>
+            }
+            subheading={
+              "Our courses are designed and taught by industry experts who have years of experience in coding and are passionate about sharing their knowledge with you."
+            }
+            ctabtn1={{
+              binText: "Try it Yourself",
+              linkto: "/signup",
+              active: true,
+            }}
+            ctabtn2={{
+              binText: "learn more",
+              linkto: "/login",
+              active: false,
+            }}
+            codeblock={`<!DOCTYPE html>\n <html lang="en">\n<head>\n<title>This is myPage</title>\n</head>\n<body>\n<h1><a href="/">Header</a></h1>\n<nav> <a href="/one">One</a> <a href="/two">Two</a> <a href="/three">Three</a>\n</nav>\n</body>`}
+            codecolor = {"text-yellow-25"}
+          />
         </div>
       </div>
       {/* Section 2 */}
