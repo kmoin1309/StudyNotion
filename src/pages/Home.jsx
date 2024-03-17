@@ -1,14 +1,18 @@
 // Icons Import
-import { FaArrowRight } from "react-icons/fa"
-import { Link } from "react-router-dom"
+import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 // Image and Video Import
-import Banner from "../assets/Images/banner.mp4"
+import Banner from "../assets/Images/banner.mp4";
 // Component Imports
-import Footer from "../components/common/Footer"
-import CTAButton from "../components/core/HomePage/Button"
-import CodeBlocks from "../components/core/HomePage/CodeBlocks"
-import HighlightText from "../components/core/HomePage/HighlightText"
+import Footer from "../components/common/Footer";
+import CTAButton from "../components/core/HomePage/Button";
+import CodeBlocks from "../components/core/HomePage/CodeBlocks";
+import HighlightText from "../components/core/HomePage/HighlightText";
+import TimelineSection from "../components/core/HomePage/TimelineSection";
+import LearningLanguageSection from "../components/core/HomePage/LearningLanguageSection";
+import InstructorSection from "../components/core/HomePage/InstructorSection";
+import ExploreMore from "../components/core/HomePage/ExploreMore";
 
 function Home() {
   return (
@@ -41,10 +45,16 @@ function Home() {
 
         {/* CTA Buttons */}
         <div className="mt-8 flex flex-row gap-7">
-          <CTAButton active={true} linkto={"/signup"}>
+          <CTAButton
+            active={true}
+            linkto={"/signup"}
+          >
             Learn More
           </CTAButton>
-          <CTAButton active={false} linkto={"/login"}>
+          <CTAButton
+            active={false}
+            linkto={"/login"}
+          >
             Book a Demo
           </CTAButton>
         </div>
@@ -57,7 +67,10 @@ function Home() {
             loop
             autoPlay
           >
-            <source src={Banner} type="video/mp4" />
+            <source
+              src={Banner}
+              type="video/mp4"
+            />
           </video>
         </div>
 
@@ -119,11 +132,72 @@ function Home() {
             backgroundGradient={<div className="codeblock2 absolute"></div>}
           />
         </div>
+        {/* Explore Section */}
+        <ExploreMore />
+      </div>
+      {/* Secton 2 */}
+      <div className="bg-pure-greys-5 text-richblack-700">
+        <div className="homepage_bg h-[310px]">
+          <div className="w-11/12 max-w-maxContent flex flex-col items-center gap-5 mx-auto">
+            <div className="h-[150px]"></div>
+            <div className="flex flex-row gap-7 text-white">
+              <CTAButton
+                active={true}
+                linkto={"/signup"}
+              >
+                <div className="flex item-center gap-3 ">
+                  Exlore Full Catalog
+                  <FaArrowRight />
+                </div>
+              </CTAButton>
+              <CTAButton
+                active={false}
+                linkto={"/signup"}
+              >
+                <div>Learn more</div>
+              </CTAButton>
+            </div>
+          </div>
+        </div>
+
+        <div className="mx-auto w-11/12 max-w-maxContent flex flex-col items-center justify-between gap-7">
+          <div className="flex flex-row gap-5 mb-10 mt-[95px]">
+            <div className="text-4xl font-semibold w-[45%]">
+              {" "}
+              Get the Skills you need for a{" "}
+              <HighlightText text={"Job that is in demand"} />
+            </div>
+
+            <div className="flex flex-col gap-10 w-[40%] items-start">
+              <div className="text-[16px]">
+                The modern StudyNotion is the dictates its own terms. Today, to
+                be a competitive specialist requires more than professional
+                skills.
+              </div>
+              <CTAButton
+                active={true}
+                linkto={"/signup"}
+              >
+                Learn more
+              </CTAButton>
+            </div>
+          </div>
+          <TimelineSection />
+          <LearningLanguageSection />
+        </div>
+      </div>
+
+      {/* Sectton 3 */}
+      <div className="w-11/12 mx-auto max-w-maxContent items-center justify-between gap-8 first-letter: bg-richblack-900 text-white my-20">
+        <InstructorSection />
+        <h2 className="text-center text-4xl font-semibold mt-10">
+          Reviews from Other Learners
+        </h2>
       </div>
       {/* Footer */}
       <Footer />
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
