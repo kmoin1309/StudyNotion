@@ -9,18 +9,7 @@ import { NavbarLinks } from "../../data/navbar-links";
 import { apiConnector } from "../../services/apiconnector";
 import { categories } from "../../services/apis";
 import { ACCOUNT_TYPE } from "../../utils/constants";
-import ProfileDropdown from "../core/Auth/ProfileDropdown";
-
-const subLinks = [
-  {
-    title: "python",
-    link: "/catalog/python",
-  },
-  {
-    title: "web dev",
-    link: "/catalog/web-development",
-  },
-];
+import ProfileDropdown from "../core/Auth/ProfileDropDown";
 
 function Navbar() {
   const { token } = useSelector((state) => state.auth);
@@ -28,21 +17,21 @@ function Navbar() {
   const { totalItems } = useSelector((state) => state.cart);
   const location = useLocation();
 
-  // const [subLinks, setSubLinks] = useState([]);
+  const [subLinks, setSubLinks] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     setLoading(true);
-  //     try {
-  //       const res = await apiConnector("GET", categories.CATEGORIES_API);
-  //       setSubLinks(res.data.data);
-  //     } catch (error) {
-  //       console.log("Could not fetch Categories.", error);
-  //     }
-  //     setLoading(false);
-  //   })();
-  // }, []);
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      try {
+        const res = await apiConnector("GET", categories.CATEGORIES_API);
+        setSubLinks(res.data.data);
+      } catch (error) {
+        console.log("Could not fetch Categories.", error);
+      }
+      setLoading(false);
+    })();
+  }, []);
 
   // console.log("sub links", subLinks)
 
