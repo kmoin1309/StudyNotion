@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-hot-toast";
 
-
 const initialState = {
   cart: localStorage.getItem("cart")
     ? JSON.parse(localStorage.getItem("cart"))
@@ -68,5 +67,6 @@ const cartSlice = createSlice({
   },
 });
 
-export const { setToken } = cartSlice.actions;
+export const { addToCart, removeFromCart, resetCart } = cartSlice.actions;
+
 export default cartSlice.reducer;
