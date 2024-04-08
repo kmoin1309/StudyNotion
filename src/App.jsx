@@ -9,6 +9,7 @@ import OpenRoute from "./components/core/Auth/OpenRoute";
 import UpdatePassword from "./pages/UpdatePassword";
 import VerifyEmail from "./pages/VerifyEmail";
 import Contact from "./pages/Contact";
+import About from "./pages/About";
 
 function App() {
 
@@ -59,6 +60,10 @@ function App() {
               <VerifyEmail />
             </OpenRoute>
           }
+        />
+        <Route
+          path="/about"
+          element={<About />}
         />
         <Route
           path="/contact"
