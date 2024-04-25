@@ -1,7 +1,7 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home"
-import Navbar from "./components/common/Navbar"
+import Home from "./pages/Home";
+import Navbar from "./components/common/Navbar";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -13,9 +13,13 @@ import About from "./pages/About";
 import PrivateRoute from "./components/core/Auth/PrivateRoute";
 import Dashboard from "./pages/Dashboard";
 import MyProfile from "./components/core/Dashboard/MyProfile";
+import Settings from "./components/core/Dashboard/Settings";
+import EnrolledCourses from "./components/core/Dashboard/EnrolledCourses";
+import Cart from "./components/core/Dashboard/Cart";
+import User from "../server/models/User";
+import { ACCOUNT_TYPE } from "./utils/constants";
 
 function App() {
-
   return (
     <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
       <Navbar />
@@ -83,6 +87,23 @@ function App() {
             path="dashboard/my-profile"
             element={<MyProfile />}
           />
+          <Route
+            path="dashboard/Settings"
+            element={<Settings />}
+          />
+
+          {User?.accountType === ACCOUNT_TYPE.STUDENT && (
+            <>
+              <Route
+                path="dashboard/cart"
+                element={<Cart />}
+              />
+              <Route
+                path="dashboard/enrolled-courses"
+                element={<EnrolledCourses />}
+              />
+            </>
+          )}
         </Route>
       </Routes>
     </div>
