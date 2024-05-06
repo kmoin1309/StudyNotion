@@ -16,7 +16,7 @@ const CourseSlider = ({ Courses }) => {
           slidesPerView={1}
           spaceBetween={25}
           loop={true}
-          modules={[FreeMode, Pagination]}
+          modules={[FreeMode, Pagination, Autoplay, Navigation]}
           breakpoints={{
             1024: {
               slidesPerView: 3,
