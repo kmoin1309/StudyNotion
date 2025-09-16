@@ -4,7 +4,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
-import { Autoplay, FreeMode, Navigation, Pagination } from "swiper";
+import "swiper/css/navigation"; // if you are using Navigation arrows
+
+// ✅ Correct module imports for Swiper v8+
+import { Autoplay, FreeMode, Navigation, Pagination } from "swiper/modules";
 
 import Course_Card from "./Course_Card";
 
@@ -23,13 +26,13 @@ const CourseSlider = ({ Courses }) => {
             },
           }}
           className="max-h-[30rem]"
+          autoplay={{ delay: 3000 }} // optional autoplay config
+          pagination={{ clickable: true }} // optional pagination config
+          navigation // enable navigation arrows
         >
-          {Courses?.map((course, i) => (
+          {Courses.map((course, i) => (
             <SwiperSlide key={i}>
-              <Course_Card
-                course={course}
-                Height={"h-[250px]"}
-              />
+              <Course_Card course={course} Height={"h-[250px]"} />
             </SwiperSlide>
           ))}
         </Swiper>
