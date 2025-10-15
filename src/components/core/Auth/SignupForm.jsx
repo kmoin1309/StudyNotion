@@ -4,7 +4,6 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { sendOtp } from "../../../services/operations/authAPI";
 import { setSignupData } from "../../../slices/authSlice";
 import { ACCOUNT_TYPE } from "../../../utils/constants";
 import Tab from "../../common/Tab";
@@ -38,33 +37,43 @@ function SignupForm() {
   };
 
   // Handle Form Submission
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
       toast.error("Passwords Do Not Match");
       return;
     }
+
     const signupData = {
-      ...formData,
-      accountType,
+      email,
+      password,
+      name: `${firstName} ${lastName}`,
+      role: accountType,
     };
 
-    // Setting signup data to state
-    // To be used after otp verification
-    dispatch(setSignupData(signupData));
-    // Send OTP to user for verification
-    dispatch(sendOtp(formData.email, navigate));
+    try {
+      const response = await fetch('http://localhost:4000/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(signupData),
+      });
 
-    // Reset
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    });
-    setAccountType(ACCOUNT_TYPE.STUDENT);
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        toast.success('Account created successfully');
+        navigate('/dashboard');
+      } else {
+        toast.error(data.message || 'Signup failed');
+      }
+    } catch (error) {
+      toast.error('An error occurred');
+    }
   };
 
   // data to pass to Tab component
